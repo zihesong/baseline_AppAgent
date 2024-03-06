@@ -58,8 +58,7 @@ os.mkdir(task_dir)
 docs_dir = os.path.join(work_dir, "auto_docs")
 if not os.path.exists(docs_dir):
     os.mkdir(docs_dir)
-explore_log_path = os.path.join(task_dir, f"log_explore_{task_name}.txt")
-reflect_log_path = os.path.join(task_dir, f"log_reflect_{task_name}.txt")
+explore_log_path = os.path.join(task_dir, f"log_explore_{task_name}.json")
 
 device_list = list_all_devices()
 if not device_list:
