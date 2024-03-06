@@ -1,2 +1,4 @@
 api_key.yaml
 apps/
+
+scripts/__pycache__/
