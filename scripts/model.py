@@ -26,6 +26,7 @@ class OpenAIModel(BaseModel):
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
+        
 
     def get_model_response(self, prompt: str, images: List[str]) -> (bool, str):
         content = [
@@ -101,11 +102,14 @@ class QwenModel(BaseModel):
 def parse_explore_rsp(rsp):
     try:
         observation = re.findall(r"Observation: (.*?)$", rsp, re.MULTILINE)[0]
+        expectation = re.findall(r"Expectation: (.*?)$", rsp, re.MULTILINE)[0]
         think = re.findall(r"Thought: (.*?)$", rsp, re.MULTILINE)[0]
         act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
         last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
         print_with_color("Observation:", "yellow")
         print_with_color(observation, "magenta")
+        print_with_color("Expectation:", "yellow")
+        print_with_color(expectation, "magenta")
         print_with_color("Thought:", "yellow")
         print_with_color(think, "magenta")
         print_with_color("Action:", "yellow")
@@ -133,6 +137,14 @@ def parse_explore_rsp(rsp):
             return [act_name, area, swipe_dir, dist, last_act]
         elif act_name == "grid":
             return [act_name]
+        elif act_name == "clarification":
+            question = re.findall(r"clarification\((.*?)\)", act)[0][1:-1]
+            print_with_color(f"CLARIFICATION: {question}", "yellow")
+            return [act_name, question]
+        elif act_name == "confirmation":
+            question = re.findall(r"confirmation\((.*?)\)", act)[0][1:-1]
+            print_with_color(f"CONFIRMATION: {question}", "yellow")
+            return [act_name, question]
         else:
             print_with_color(f"ERROR: Undefined act {act_name}!", "red")
             return ["ERROR"]

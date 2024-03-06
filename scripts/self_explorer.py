@@ -87,10 +87,11 @@ doc_count = 0
 useless_list = set()
 last_act = "None"
 task_complete = False
+user_interaction = "None"
 while round_count < configs["MAX_ROUNDS"]:
     round_count += 1
     print_with_color(f"Round {round_count}", "yellow")
-    screenshot_before = controller.get_screenshot(f"{round_count}_before", task_dir)
+    screenshot_before = controller.get_screenshot(f"{round_count}", task_dir)
     xml_path = controller.get_xml(f"{round_count}", task_dir)
     if screenshot_before == "ERROR" or xml_path == "ERROR":
         break
@@ -118,13 +119,16 @@ while round_count < configs["MAX_ROUNDS"]:
                 break
         if not close:
             elem_list.append(elem)
-    draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_before_labeled.png"), elem_list,
+    draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_labeled.png"), elem_list,
                     dark_mode=configs["DARK_MODE"])
 
     prompt = re.sub(r"<task_description>", task_desc, prompts.self_explore_task_template)
     prompt = re.sub(r"<last_act>", last_act, prompt)
-    base64_img_before = os.path.join(task_dir, f"{round_count}_before_labeled.png")
-    print_with_color("Thinking about what to do in the next step...", "yellow")
+    prompt = re.sub(r"<user_interaction>", user_interaction, prompt)
+    base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
+    
+    """ LLM Generation """
+    print_with_color("Getting response from the model...", "yellow")
     status, rsp = mllm.get_model_response(prompt, [base64_img_before])
 
     if status:
@@ -133,6 +137,7 @@ while round_count < configs["MAX_ROUNDS"]:
                         "response": rsp}
             logfile.write(json.dumps(log_item) + "\n")
         res = parse_explore_rsp(rsp)
+        # print(res)
         act_name = res[0]
         last_act = res[-1]
         res = res[:-1]
@@ -169,91 +174,18 @@ while round_count < configs["MAX_ROUNDS"]:
             if ret == "ERROR":
                 print_with_color("ERROR: swipe execution failed", "red")
                 break
+        elif act_name == "clarification" or act_name == "confirmation":
+            question = res
+            print_with_color(f"{act_name.upper()}: {question}", "green")
+            user_response = input()
+            user_interaction = f"{act_name} question: {question}, user responce: {user_response}"
         else:
             break
-        time.sleep(configs["REQUEST_INTERVAL"])
+        # time.sleep(configs["REQUEST_INTERVAL"])
     else:
         print_with_color(rsp, "red")
         break
 
-    screenshot_after = controller.get_screenshot(f"{round_count}_after", task_dir)
-    if screenshot_after == "ERROR":
-        break
-    draw_bbox_multi(screenshot_after, os.path.join(task_dir, f"{round_count}_after_labeled.png"), elem_list,
-                    dark_mode=configs["DARK_MODE"])
-    base64_img_after = os.path.join(task_dir, f"{round_count}_after_labeled.png")
-
-    if act_name == "tap":
-        prompt = re.sub(r"<action>", "tapping", prompts.self_explore_reflect_template)
-    elif act_name == "text":
-        continue
-    elif act_name == "long_press":
-        prompt = re.sub(r"<action>", "long pressing", prompts.self_explore_reflect_template)
-    elif act_name == "swipe":
-        swipe_dir = res[2]
-        if swipe_dir == "up" or swipe_dir == "down":
-            act_name = "v_swipe"
-        elif swipe_dir == "left" or swipe_dir == "right":
-            act_name = "h_swipe"
-        prompt = re.sub(r"<action>", "swiping", prompts.self_explore_reflect_template)
-    else:
-        print_with_color("ERROR: Undefined act!", "red")
-        break
-    prompt = re.sub(r"<ui_element>", str(area), prompt)
-    prompt = re.sub(r"<task_desc>", task_desc, prompt)
-    prompt = re.sub(r"<last_act>", last_act, prompt)
-
-    print_with_color("Reflecting on my previous action...", "yellow")
-    status, rsp = mllm.get_model_response(prompt, [base64_img_before, base64_img_after])
-    if status:
-        resource_id = elem_list[int(area) - 1].uid
-        with open(reflect_log_path, "a") as logfile:
-            log_item = {"step": round_count, "prompt": prompt, "image_before": f"{round_count}_before_labeled.png",
-                        "image_after": f"{round_count}_after.png", "response": rsp}
-            logfile.write(json.dumps(log_item) + "\n")
-        res = parse_reflect_rsp(rsp)
-        decision = res[0]
-        if decision == "ERROR":
-            break
-        if decision == "INEFFECTIVE":
-            useless_list.add(resource_id)
-            last_act = "None"
-        elif decision == "BACK" or decision == "CONTINUE" or decision == "SUCCESS":
-            if decision == "BACK" or decision == "CONTINUE":
-                useless_list.add(resource_id)
-                last_act = "None"
-                if decision == "BACK":
-                    ret = controller.back()
-                    if ret == "ERROR":
-                        print_with_color("ERROR: back execution failed", "red")
-                        break
-            doc = res[-1]
-            doc_name = resource_id + ".txt"
-            doc_path = os.path.join(docs_dir, doc_name)
-            if os.path.exists(doc_path):
-                doc_content = ast.literal_eval(open(doc_path).read())
-                if doc_content[act_name]:
-                    print_with_color(f"Documentation for the element {resource_id} already exists.", "yellow")
-                    continue
-            else:
-                doc_content = {
-                    "tap": "",
-                    "text": "",
-                    "v_swipe": "",
-                    "h_swipe": "",
-                    "long_press": ""
-                }
-            doc_content[act_name] = doc
-            with open(doc_path, "w") as outfile:
-                outfile.write(str(doc_content))
-            doc_count += 1
-            print_with_color(f"Documentation generated and saved to {doc_path}", "yellow")
-        else:
-            print_with_color(f"ERROR: Undefined decision! {decision}", "red")
-            break
-    else:
-        print_with_color(rsp["error"]["message"], "red")
-        break
     time.sleep(configs["REQUEST_INTERVAL"])
 
 if task_complete:
