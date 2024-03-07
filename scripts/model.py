@@ -116,42 +116,49 @@ def parse_explore_rsp(rsp):
         print_with_color(act, "magenta")
         print_with_color("Summary:", "yellow")
         print_with_color(last_act, "magenta")
+        log_dict = {
+            "Observation": observation,
+            "Expectation": expectation,
+            "Thought": think,
+            "Action": act,
+            "Summary": last_act
+        }
         if "FINISH" in act:
-            return ["FINISH"]
+            return ["FINISH"], log_dict
         act_name = act.split("(")[0]
         if act_name == "tap":
             area = int(re.findall(r"tap\((.*?)\)", act)[0])
-            return [act_name, area, last_act]
+            return [act_name, area, last_act], log_dict
         elif act_name == "text":
             input_str = re.findall(r"text\((.*?)\)", act)[0][1:-1]
-            return [act_name, input_str, last_act]
+            return [act_name, input_str, last_act], log_dict
         elif act_name == "long_press":
             area = int(re.findall(r"long_press\((.*?)\)", act)[0])
-            return [act_name, area, last_act]
+            return [act_name, area, last_act], log_dict
         elif act_name == "swipe":
             params = re.findall(r"swipe\((.*?)\)", act)[0]
             area, swipe_dir, dist = params.split(",")
             area = int(area)
             swipe_dir = swipe_dir.strip()[1:-1]
             dist = dist.strip()[1:-1]
-            return [act_name, area, swipe_dir, dist, last_act]
+            return [act_name, area, swipe_dir, dist, last_act], log_dict
         elif act_name == "grid":
-            return [act_name]
+            return [act_name], log_dict
         elif act_name == "clarification":
             question = re.findall(r"clarification\((.*?)\)", act)[0][1:-1]
             print_with_color(f"CLARIFICATION: {question}", "yellow")
-            return [act_name, question]
+            return [act_name, question], log_dict
         elif act_name == "confirmation":
             question = re.findall(r"confirmation\((.*?)\)", act)[0][1:-1]
             print_with_color(f"CONFIRMATION: {question}", "yellow")
-            return [act_name, question]
+            return [act_name, question], log_dict
         else:
             print_with_color(f"ERROR: Undefined act {act_name}!", "red")
-            return ["ERROR"]
+            return ["ERROR"], log_dict
     except Exception as e:
         print_with_color(f"ERROR: an exception occurs while parsing the model response: {e}", "red")
         print_with_color(rsp, "red")
-        return ["ERROR"]
+        return ["ERROR"], log_dict
 
 
 def parse_grid_rsp(rsp):

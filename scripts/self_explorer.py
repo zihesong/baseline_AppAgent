@@ -8,6 +8,8 @@ import sys
 import time
 
 import prompts
+import prompts_sequential
+import prompts_parallel
 from config import load_config
 from and_controller import list_all_devices, AndroidController, traverse_tree
 from model import parse_explore_rsp, parse_reflect_rsp, OpenAIModel, QwenModel
@@ -17,6 +19,7 @@ arg_desc = "AppAgent - Autonomous Exploration"
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=arg_desc)
 parser.add_argument("--app")
 parser.add_argument("--root_dir", default="./")
+parser.add_argument("--prompt_style", default="parallel")
 args = vars(parser.parse_args())
 
 configs = load_config()
@@ -36,6 +39,7 @@ else:
 
 app = args["app"]
 root_dir = args["root_dir"]
+prompt_style = args["prompt_style"]
 
 if not app:
     print_with_color("What is the name of the target app?", "blue")
@@ -82,11 +86,21 @@ print_with_color("Please enter the description of the task you want me to comple
 task_desc = input()
 
 round_count = 0
-doc_count = 0
+
 useless_list = set()
 last_act = "None"
 task_complete = False
 user_interaction = "None"
+log_item = {}
+prompt_template = ""
+if prompt_style == "sequential":
+    prompt_template = prompts_sequential.self_explore_task_template
+elif prompt_style == "parallel":   
+    prompt_template = prompts_parallel.self_explore_task_template
+else:
+    prompt_style = prompts.self_explore_task_template
+print_with_color(f"Prompt style: {prompt_style}", "red")
+    
 while round_count < configs["MAX_ROUNDS"]:
     round_count += 1
     print_with_color(f"Round {round_count}", "yellow")
@@ -121,25 +135,32 @@ while round_count < configs["MAX_ROUNDS"]:
     draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_labeled.png"), elem_list,
                     dark_mode=configs["DARK_MODE"])
 
-    prompt = re.sub(r"<task_description>", task_desc, prompts.self_explore_task_template)
+    # TODO: Test Sequential / Parallel Prompt
+    prompt = re.sub(r"<task_description>", task_desc, prompt_template)
+    prompt = re.sub(r"<app>", app, prompt)
     prompt = re.sub(r"<last_act>", last_act, prompt)
     prompt = re.sub(r"<user_interaction>", user_interaction, prompt)
     base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
     
+    # TODO: Ask question first and then execute the action
     """ LLM Generation """
     print_with_color("Getting response from the model...", "yellow")
     status, rsp = mllm.get_model_response(prompt, [base64_img_before])
 
+    
     if status:
-        with open(explore_log_path, "a") as logfile:
-            log_item = {"step": round_count, "prompt": prompt, "image": f"{round_count}_before_labeled.png",
-                        "response": rsp}
-            logfile.write(json.dumps(log_item) + "\n")
-        res = parse_explore_rsp(rsp)
-        # print(res)
+        res, log_dict = parse_explore_rsp(rsp)
         act_name = res[0]
         last_act = res[-1]
         res = res[:-1]
+        log_item[round_count] = { 
+            "action": act_name, 
+            "response": log_dict, 
+            "image": f"{round_count}_before_labeled.png",
+            "prompt": prompt, 
+        }
+        # print(res)
+
         if act_name == "FINISH":
             task_complete = True
             break
@@ -175,9 +196,11 @@ while round_count < configs["MAX_ROUNDS"]:
                 break
         elif act_name == "clarification" or act_name == "confirmation":
             question = res
-            print_with_color(f"{act_name.upper()}: {question}", "green")
+            # print_with_color(f"{act_name.upper()}: {question}", "green")
             user_response = input()
             user_interaction = f"{act_name} question: {question}, user responce: {user_response}"
+            print_with_color(f"User Interaction", "yellow")
+            print_with_color(f"{user_interaction}", "green")
         else:
             break
         # time.sleep(configs["REQUEST_INTERVAL"])
@@ -188,9 +211,12 @@ while round_count < configs["MAX_ROUNDS"]:
     time.sleep(configs["REQUEST_INTERVAL"])
 
 if task_complete:
-    print_with_color(f"Autonomous exploration completed successfully. {doc_count} docs generated.", "yellow")
+    print_with_color(f"Autonomous exploration completed successfully.", "yellow")
 elif round_count == configs["MAX_ROUNDS"]:
-    print_with_color(f"Autonomous exploration finished due to reaching max rounds. {doc_count} docs generated.",
+    print_with_color(f"Autonomous exploration finished due to reaching max rounds.",
                      "yellow")
 else:
-    print_with_color(f"Autonomous exploration finished unexpectedly. {doc_count} docs generated.", "red")
+    print_with_color(f"Autonomous exploration finished unexpectedly.", "red")
+
+with open(explore_log_path, "a") as logfile:
+    json.dump(log_item, logfile, indent=4)

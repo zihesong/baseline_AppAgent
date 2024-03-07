@@ -35,6 +35,9 @@ Now, given the following labeled screenshot, you need to think and call the func
 align with user intention, you should always consider what you are expecting UI interface will react after you taken <last_act>.
 By comparing your expectation with your observation from the following labeled screenshot, if there is a intolerant unmatching.
 You should instead ask user for more clarifications and confirmations during each round to address the issue.
+Here are some requirements for expectation and observation you can think about:
+Observation: <Describe what you observe in the image>
+Expectation: <Describe what you are expecting to see in the image after executing your last action>
 
 These are some user interaction function calls that you should consider asking before calling an function to control the smartphone:
 
@@ -62,7 +65,7 @@ to system resources, you can ask for confirmation.
 Here are some previous confirmation and clarification that you have with the user:
 <previous_interactions>
 
-To better understand how you approach the task, Your output should include four parts in the given format:
+To better understand how you approach the task, Your output should also include 5 parts in the given format:
 
 Observation: <Describe what you observe in the image>
 

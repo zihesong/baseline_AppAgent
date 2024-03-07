@@ -9,11 +9,12 @@ arg_desc = "AppAgent - exploration phase"
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=arg_desc)
 parser.add_argument("--app")
 parser.add_argument("--root_dir", default="./")
+parser.add_argument("--prompt_style", default="parallel")
 args = vars(parser.parse_args())
 
 app = args["app"]
 root_dir = args["root_dir"]
-
+prompt_style = args["prompt_style"]
 
 print_with_color("Welcome to the exploration phase of AppAgent!\nThe exploration phase aims at generating "
                  "documentations for UI elements through either autonomous exploration or human demonstration. "
@@ -40,5 +41,5 @@ if user_input == "1":
 else:
     demo_timestamp = int(time.time())
     demo_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime(f"demo_{app}_%Y-%m-%d_%H-%M-%S")
-    os.system(f"python scripts/step_recorder.py --app {app} --demo {demo_name} --root_dir {root_dir}")
+    os.system(f"python scripts/step_recorder.py --app {app} --demo {demo_name} --root_dir {root_dir} --prompt {prompt_style}")
     os.system(f"python scripts/document_generation.py --app {app} --demo {demo_name} --root_dir {root_dir}")
