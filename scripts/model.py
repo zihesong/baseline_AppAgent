@@ -101,26 +101,29 @@ class QwenModel(BaseModel):
 
 def parse_explore_rsp(rsp):
     try:
-        observation = re.findall(r"Observation: (.*?)$", rsp, re.MULTILINE)[0]
-        expectation = re.findall(r"Expectation: (.*?)$", rsp, re.MULTILINE)[0]
-        think = re.findall(r"Thought: (.*?)$", rsp, re.MULTILINE)[0]
+        # observation = re.findall(r"Observation: (.*?)$", rsp, re.MULTILINE)[0]
+        # expectation = re.findall(r"Expectation: (.*?)$", rsp, re.MULTILINE)[0]
+        reason = re.findall(r"Reason: (.*?)$", rsp, re.MULTILINE)[0]
+        # think = re.findall(r"Thought: (.*?)$", rsp, re.MULTILINE)[0]
         act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
         last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
-        print_with_color("Observation:", "yellow")
-        print_with_color(observation, "magenta")
-        print_with_color("Expectation:", "yellow")
-        print_with_color(expectation, "magenta")
-        print_with_color("Thought:", "yellow")
-        print_with_color(think, "magenta")
+        # print_with_color("Observation:", "yellow")
+        # print_with_color(observation, "magenta")
+        # print_with_color("Expectation:", "yellow")
+        # print_with_color(expectation, "magenta")
+        print_with_color("Reason:", "yellow")
+        print_with_color(reason, "magenta")
+        # print_with_color("Thought:", "yellow")
+        # print_with_color(think, "magenta")
         print_with_color("Action:", "yellow")
         print_with_color(act, "magenta")
         print_with_color("Summary:", "yellow")
         print_with_color(last_act, "magenta")
         log_dict = {
-            "Observation": observation,
-            "Expectation": expectation,
-            "Thought": think,
-            "Action": act,
+           # "Observation": observation,
+           # "Expectation": expectation,
+            "Reason": reason,
+           # "Thought": think,
             "Summary": last_act
         }
         if "FINISH" in act:

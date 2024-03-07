@@ -48,13 +48,9 @@ Before each action, if you feel the current step will cause some irreversible ch
 For example, if your next step involves deleting a file or removing an entry, you should first seek confirmation due to the irreversible nature of these actions.
 "question" is a string that represents the question you want to ask and must be wrapped with double quotation marks.
 
-To better understand how you approach the task, Your output should also include 5 parts in the given format:
+To better understand how you approach the task, Your output should also include 3 parts in the given format:
 
-Observation: <Describe what you observe in the image>
-
-Expectation: <Describe what you are expecting to see in the image after executing your last action>
-
-Thought: <To complete the given task, what is the next step I should do>
+Reason: <Explain why you think you don't need to ask for clarifications or confimations this round>
 
 Action: <The function call with the correct parameters to proceed with the task. If you believe the task is completed or there is nothing to be done, you should output FINISH. You cannot output anything else except a function call or FINISH in this field.>
 
