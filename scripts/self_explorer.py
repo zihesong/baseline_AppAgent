@@ -10,6 +10,7 @@ import time
 import prompts
 import prompts_sequential
 import prompts_parallel
+import examples
 from config import load_config
 from and_controller import list_all_devices, AndroidController, traverse_tree
 from model import parse_explore_rsp, parse_reflect_rsp, OpenAIModel, QwenModel
@@ -93,6 +94,7 @@ task_complete = False
 user_interaction = "None"
 log_item = {}
 prompt_template = ""
+example_images = ""
 if prompt_style == "sequential":
     prompt_template = prompts_sequential.self_explore_task_template
 elif prompt_style == "parallel":   
@@ -143,19 +145,23 @@ while round_count < configs["MAX_ROUNDS"]:
     # else:
     #     prompt = re.sub(r"<user_interaction>", ";".join(user_interaction), prompt)
     prompt = re.sub(r"<previous_interactions>", user_interaction, prompt)
+    if prompt_style == "sequential":
+        example_images = re.findall(r'<([^>]+)>', examples.self_explore_task_example)
+        cleaned_example_prompt = re.sub(r'<([^>]+)>', '', examples.self_explore_task_example)
+        prompt = re.sub(r"<examples>", cleaned_example_prompt, prompt) 
     base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
-    
     """ LLM Generation """
     print_with_color("Getting response from the model...", "yellow")
-    status, rsp = mllm.get_model_response(prompt, [base64_img_before])
-
+    status, rsp = mllm.get_model_response(prompt, example_images + [base64_img_before])
+    print_with_color(', '.join(example_images + [base64_img_before]), 'blue')
+    
     assert status, f"Error: {rsp}"
     
     res, log_dict = parse_explore_rsp(rsp)
     act_name = res[0]
     last_act = res[-1]
     res = res[:-1]
-    log_item[round_count] = { 
+    log_item[act_name] = { 
         "action": act_name, 
         "response": log_dict, 
         "image": f"{round_count}_before_labeled.png",
@@ -163,11 +169,13 @@ while round_count < configs["MAX_ROUNDS"]:
     }
         # print(res)
     if prompt_style == "sequential":
-        print_with_color(f"Taking a '{act_name} action...'", "green")
+        print_with_color(f"Taking a [{act_name}] action...", "green")
         if act_name == "QUESTION":
             prompt = re.sub(r"<task_description>", task_desc, prompts_sequential.self_explore_task_question_template)
+            prompt = re.sub(r"<examples>", examples.self_explore_task_question_example, prompt)
         elif act_name == "ACTION":
             prompt = re.sub(r"<task_description>", task_desc, prompts_sequential.self_explore_task_action_template)
+            prompt = re.sub(r"<examples>", examples.self_explore_task_action_example, prompt)
         elif act_name == "FINISH":
             task_complete = True
             break
@@ -186,7 +194,7 @@ while round_count < configs["MAX_ROUNDS"]:
         act_name = res[0]
         last_act = res[-1]
         res = res[:-1]
-        round_count += 1
+        # round_count += 1
         log_item[round_count] = { 
             "action": act_name, 
             "response": log_dict, 
@@ -232,7 +240,7 @@ while round_count < configs["MAX_ROUNDS"]:
         _, question = res
         user_response = input()
         # user_interaction.append(f"{act_name} question: {question}, user responce: {user_response}")
-        user_interaction = f"{act_name} question: {question}, user responce: {user_response}"
+        user_interaction = f"{act_name} question: {question}, user responce: {user_response}."
         print_with_color(f"{user_interaction}", "green")
         # time.sleep(configs["REQUEST_INTERVAL"])
     else:
@@ -240,7 +248,7 @@ while round_count < configs["MAX_ROUNDS"]:
         break
 
     time.sleep(configs["REQUEST_INTERVAL"])
-    input("Enter to continue...")
+    # input("Enter to continue...")
 
 if task_complete:
     print_with_color(f"Autonomous exploration completed successfully.", "yellow")
@@ -252,3 +260,4 @@ else:
 
 with open(explore_log_path, "a") as logfile:
     json.dump(log_item, logfile, indent=4)
+    print_with_color(f"Log file saved to {explore_log_path}", "red")

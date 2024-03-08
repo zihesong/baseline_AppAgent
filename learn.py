@@ -27,9 +27,10 @@ print_with_color("Welcome to the exploration phase of AppAgent!\nThe exploration
                  "main interface of the app on your phone.", "yellow")
 print_with_color("Choose from the following modes:\n1. autonomous exploration\n2. human demonstration\n"
                  "Type 1 or 2.", "blue")
-user_input = ""
-while user_input != "1" and user_input != "2":
-    user_input = input()
+user_input = "1"
+# while user_input != "1" and user_input != "2":
+    # user_input = input()
+
 
 if not app:
     print_with_color("What is the name of the target app?", "blue")
