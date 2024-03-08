@@ -19,7 +19,7 @@ arg_desc = "AppAgent - Autonomous Exploration"
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=arg_desc)
 parser.add_argument("--app")
 parser.add_argument("--root_dir", default="./")
-parser.add_argument("--prompt_style", default="parallel")
+parser.add_argument("--prompt_style", default="sequential")
 args = vars(parser.parse_args())
 
 configs = load_config()
@@ -135,80 +135,112 @@ while round_count < configs["MAX_ROUNDS"]:
     draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_labeled.png"), elem_list,
                     dark_mode=configs["DARK_MODE"])
 
-    # TODO: Test Sequential / Parallel Prompt
     prompt = re.sub(r"<task_description>", task_desc, prompt_template)
     prompt = re.sub(r"<app>", app, prompt)
     prompt = re.sub(r"<last_act>", last_act, prompt)
-    prompt = re.sub(r"<user_interaction>", user_interaction, prompt)
+    # if user_interaction:
+    #     prompt = re.sub(r"<user_interaction>", user_interaction, prompt)
+    # else:
+    #     prompt = re.sub(r"<user_interaction>", ";".join(user_interaction), prompt)
+    prompt = re.sub(r"<previous_interactions>", user_interaction, prompt)
     base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
     
-    # TODO: Ask question first and then execute the action
     """ LLM Generation """
     print_with_color("Getting response from the model...", "yellow")
     status, rsp = mllm.get_model_response(prompt, [base64_img_before])
 
+    assert status, f"Error: {rsp}"
     
-    if status:
+    res, log_dict = parse_explore_rsp(rsp)
+    act_name = res[0]
+    last_act = res[-1]
+    res = res[:-1]
+    log_item[round_count] = { 
+        "action": act_name, 
+        "response": log_dict, 
+        "image": f"{round_count}_before_labeled.png",
+        "prompt": prompt, 
+    }
+        # print(res)
+    if prompt_style == "sequential":
+        print_with_color(f"Taking a '{act_name} action...'", "green")
+        if act_name == "QUESTION":
+            prompt = re.sub(r"<task_description>", task_desc, prompts_sequential.self_explore_task_question_template)
+        elif act_name == "ACTION":
+            prompt = re.sub(r"<task_description>", task_desc, prompts_sequential.self_explore_task_action_template)
+        elif act_name == "FINISH":
+            task_complete = True
+            break
+        
+        prompt = re.sub(r"<app>", app, prompt)
+        prompt = re.sub(r"<last_act>", last_act, prompt)
+        prompt = re.sub(r"<previous_interactions>", user_interaction, prompt)
+        
+        # print_with_color(f"{prompt}", "red")
+        print_with_color("Getting response from the model...", "yellow")
+        status, rsp = mllm.get_model_response(prompt, [base64_img_before])
+            
+        assert status, f"Error: {rsp}"
+            
         res, log_dict = parse_explore_rsp(rsp)
         act_name = res[0]
         last_act = res[-1]
         res = res[:-1]
+        round_count += 1
         log_item[round_count] = { 
             "action": act_name, 
             "response": log_dict, 
             "image": f"{round_count}_before_labeled.png",
             "prompt": prompt, 
         }
-        # print(res)
-
-        if act_name == "FINISH":
-            task_complete = True
+    
+    ### Process all function calls   
+    if act_name == "FINISH":
+        task_complete = True
+        break
+    if act_name == "tap":
+        _, area = res
+        tl, br = elem_list[area - 1].bbox
+        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+        ret = controller.tap(x, y)
+        if ret == "ERROR":
+            print_with_color("ERROR: tap execution failed", "red")
             break
-        if act_name == "tap":
-            _, area = res
-            tl, br = elem_list[area - 1].bbox
-            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-            ret = controller.tap(x, y)
-            if ret == "ERROR":
-                print_with_color("ERROR: tap execution failed", "red")
-                break
-        elif act_name == "text":
-            _, input_str = res
-            ret = controller.text(input_str)
-            if ret == "ERROR":
-                print_with_color("ERROR: text execution failed", "red")
-                break
-        elif act_name == "long_press":
-            _, area = res
-            tl, br = elem_list[area - 1].bbox
-            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-            ret = controller.long_press(x, y)
-            if ret == "ERROR":
-                print_with_color("ERROR: long press execution failed", "red")
-                break
-        elif act_name == "swipe":
-            _, area, swipe_dir, dist = res
-            tl, br = elem_list[area - 1].bbox
-            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-            ret = controller.swipe(x, y, swipe_dir, dist)
-            if ret == "ERROR":
-                print_with_color("ERROR: swipe execution failed", "red")
-                break
-        elif act_name == "clarification" or act_name == "confirmation":
-            question = res
-            # print_with_color(f"{act_name.upper()}: {question}", "green")
-            user_response = input()
-            user_interaction = f"{act_name} question: {question}, user responce: {user_response}"
-            print_with_color(f"User Interaction", "yellow")
-            print_with_color(f"{user_interaction}", "green")
-        else:
+    elif act_name == "text":
+        _, input_str = res
+        ret = controller.text(input_str)
+        if ret == "ERROR":
+            print_with_color("ERROR: text execution failed", "red")
             break
+    elif act_name == "long_press":
+        _, area = res
+        tl, br = elem_list[area - 1].bbox
+        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+        ret = controller.long_press(x, y)
+        if ret == "ERROR":
+            print_with_color("ERROR: long press execution failed", "red")
+            break
+    elif act_name == "swipe":
+        _, area, swipe_dir, dist = res
+        tl, br = elem_list[area - 1].bbox
+        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+        ret = controller.swipe(x, y, swipe_dir, dist)
+        if ret == "ERROR":
+            print_with_color("ERROR: swipe execution failed", "red")
+            break
+    elif act_name == "clarification" or act_name == "confirmation":
+        _, question = res
+        user_response = input()
+        # user_interaction.append(f"{act_name} question: {question}, user responce: {user_response}")
+        user_interaction = f"{act_name} question: {question}, user responce: {user_response}"
+        print_with_color(f"{user_interaction}", "green")
         # time.sleep(configs["REQUEST_INTERVAL"])
     else:
-        print_with_color(rsp, "red")
+        print_with_color(f"Invalid prompt style: {prompt_style}", "red")
         break
 
     time.sleep(configs["REQUEST_INTERVAL"])
+    input("Enter to continue...")
 
 if task_complete:
     print_with_color(f"Autonomous exploration completed successfully.", "yellow")

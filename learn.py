@@ -9,7 +9,7 @@ arg_desc = "AppAgent - exploration phase"
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=arg_desc)
 parser.add_argument("--app")
 parser.add_argument("--root_dir", default="./")
-parser.add_argument("--prompt_style", default="parallel")
+parser.add_argument("--prompt_style", default="sequential")
 args = vars(parser.parse_args())
 
 app = args["app"]
