@@ -28,7 +28,7 @@ class OpenAIModel(BaseModel):
         self.max_tokens = max_tokens
         
 
-    def get_model_response(self, prompt: str, images: List[str]) -> (bool, str):
+    def get_model_response(self, system_prompt:str, prompt: str, images: List[str]) -> (bool, str):
         content = [
             {
                 "type": "text",
@@ -50,6 +50,10 @@ class OpenAIModel(BaseModel):
         payload = {
             "model": self.model,
             "messages": [
+                {
+                    "role": "system",
+                    "content": system_prompt
+                },
                 {
                     "role": "user",
                     "content": content
@@ -101,7 +105,10 @@ class QwenModel(BaseModel):
 
 def parse_explore_rsp(rsp):
     try:
-        reason = re.findall(r"Reason: (.*?)$", rsp, re.MULTILINE)[0]
+        try:
+            reason = re.findall(r"Reason: (.*?)$", rsp, re.MULTILINE)[0]
+        except:
+            reason = "N/A"
         act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
         last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
         print_with_color("Action:", "yellow")

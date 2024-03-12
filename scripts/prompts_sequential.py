@@ -13,7 +13,7 @@ Action: <Choose Question if clarification is needed, ACTION to proceed with clea
 
 Reason: <Explain your choice, whether to ask for further information or proceed without questioning.>
 
-Summary: <Briefly recap your past and most recent actions, along with prior interactions, in one or two sentences, omitting the numeric tags.>
+Summary: <Briefly recap your most recent action, along with prior interactions, in one or two sentences, omitting the numeric tags.>
 
 """
 
@@ -46,7 +46,7 @@ Action: <The function call with the correct parameters to proceed with the task.
 
 Reason: <Explain your choice.>
 
-Summary: <Briefly recap your past and most recent actions, along with prior interactions, in one or two sentences, omitting the numeric tags.>
+Summary: <Briefly recap your most recent action, along with prior interactions, in one or two sentences, omitting the numeric tags.>
 
 """
 
@@ -76,6 +76,6 @@ Action: <The function call with the correct parameters to proceed with the task.
 
 Reason: <Explain your choice.>
 
-Summary: <Briefly recap your past and most recent actions, along with prior interactions, in one or two sentences, omitting the numeric tags.>
+Summary: <Briefly recap your most recent action, along with prior interactions, in one or two sentences, omitting the numeric tags.>
 
 """
