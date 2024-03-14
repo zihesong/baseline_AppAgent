@@ -1,4 +1,4 @@
-self_explore_task_example = """
+decision_example = """
 [Example 1]
 Current task is to delete Dallas from favorite list on AccuWeather. Previously we have asked clarification and known that user refer Dallas, Georgia as Dallas. We successfully navigate to edit favourites page. Given the screenshot, I have seen a Remove button next to the Dallas, Georgia. However, since removing an entry from favorite can be hard to recover, I should ask for user to confirm the action. Therefore, I should generate QUESTION action.
 <scripts/example_images/accuweather_delete_favorites.png>
@@ -16,11 +16,10 @@ Current task is to delete a 9:00 AM clock on Clock. Previously we have asked con
 <scripts/example_images/clock_delete_multiple.png>
 
 """
-self_explore_task_example_image = "/examples/self_explore_task_example.png"
 
-self_explore_task_action_example = """"""
+action_example = """"""
 
-self_explore_task_question_example = """
+question_example = """
 Example 1: User wants to delete London from favorite list on weather app. However, since delete action can be considered irreversible, even though we can add it back to the favorite list later on, but to avoid any potential misunderstanding, we should ask for user to confirm the action. Therefore, I should generate CONFIRMATION action.
 
 Example 2: User wants to add London to favorite list on weather app. However, the user did not specify which London he/she is referring to. In this case, we should not assume that user means London, UK. We should ask for user to provide more detailed information. Therefore, I should generate CLARIFICATION action.

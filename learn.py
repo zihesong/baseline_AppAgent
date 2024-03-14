@@ -10,15 +10,14 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpForm
 parser.add_argument("--app")
 parser.add_argument("--task")
 parser.add_argument("--root_dir", default="./")
-parser.add_argument("--prompt_style", default="sequential")
-parser.add_argument("--test_type", default="normal")
+parser.add_argument("--prompt_style", default="normal")
 args = vars(parser.parse_args())
 
 app = args["app"]
 task = args["task"]
 root_dir = args["root_dir"]
 prompt_style = args["prompt_style"]
-test_type = args['test_type']
+
 
 print_with_color("Welcome to the exploration phase of AppAgent!\nThe exploration phase aims at generating "
                  "documentations for UI elements through either autonomous exploration or human demonstration. "
@@ -42,11 +41,8 @@ if not app:
     app = app.replace(" ", "")
 
 if user_input == "1":
-    print_with_color(f"Test type: {test_type}", "red")
-    if test_type == "normal":
-        os.system(f"python scripts/self_explorer.py --app {app} --task {task} --root_dir {root_dir} --prompt {prompt_style}")
-    elif test_type == "naive":
-        os.system(f"python scripts/self_explorer_naive.py --app {app} --task {task} --root_dir {root_dir} --prompt {prompt_style}")
+    print_with_color(f"Prompt Style {prompt_style}", "red")
+    os.system(f"python scripts/self_explorer.py --app {app} --task {task} --root_dir {root_dir} --prompt {prompt_style}")
 else:
     demo_timestamp = int(time.time())
     demo_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime(f"demo_{app}_%Y-%m-%d_%H-%M-%S")

@@ -1,4 +1,4 @@
-self_explore_task_template = """Your past actions to proceed with this task are summarized as follows: <last_act>. Here are some previous confirmations and clarifications that you have with the user: <previous_interactions>. 
+decision_template = """Your past actions to proceed with this task are summarized as follows: <last_act>. Here is a previous interaction dialogue that you have with the user: <previous_interactions> 
 
 You will be given a screenshot of a smartphone app. The interactive UI elements on the screenshot are labeled with numeric tags starting from 1. Only focus on the elements in the screenshot, and do not assume anything that is not shown in the screenshot.
 
@@ -9,8 +9,8 @@ Summary: <Briefly recap your most recent action, along with prior interactions, 
 """
 
 
-self_explore_task_action_template = """
-Your past actions to proceed with this task are summarized as follows: <last_act>. Here are some previous clarifications that you have with the user: <previous_interactions>. 
+action_template = """
+Your past actions to proceed with this task are summarized as follows: <last_act>. Here is a previous interaction dialogue that you have with the user: <previous_interactions> 
 
 To interact with a smartphone, you can call the following four functions to interact with those labeled elements to control the smartphone:
 
@@ -37,8 +37,8 @@ Action: <The function call with the correct parameters to proceed with the task.
 Summary: <Briefly recap your most recent action, along with prior interactions, in one or two sentences, omitting the numeric tags.>
 """
 
-self_explore_task_question_template = """
-Your past actions to proceed with this task are summarized as follows: <last_act>. Here are some previous clarifications that you have with the user: <previous_interactions>. 
+question_template = """
+Your past actions to proceed with this task are summarized as follows: <last_act>. Here is a previous interaction dialogue that you have with the user: <previous_interactions> 
 
 Based on the given information, your job is to decide what clarification questions you should ask the user. Respond in the following format:
 Action: <Use clarification(question: str) to initiate a clarification dialogue. "question" is a string that represents the question you want to ask and must be wrapped with double quotation marks.
