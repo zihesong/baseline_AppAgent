@@ -14,7 +14,6 @@ from config import load_config
 from and_controller import list_all_devices, AndroidController, traverse_tree
 from model import parse_explore_rsp, parse_reflect_rsp, OpenAIModel, QwenModel
 from utils import print_with_color, draw_bbox_multi
-from login_utils import login
 
 
 arg_desc = "AppAgent - Autonomous Exploration"
@@ -23,6 +22,7 @@ parser.add_argument("--app")
 parser.add_argument("--task", default="")
 parser.add_argument("--root_dir", default="./")
 parser.add_argument("--prompt_style", default="sequential")
+parser.add_argument("--test_name", default="")
 args = vars(parser.parse_args())
 
 configs = load_config()
@@ -44,6 +44,7 @@ app = args["app"].replace("-", "")
 task = args["task"].replace("-", " ")
 root_dir = args["root_dir"]
 prompt_style = args["prompt_style"]
+test_name = args["test_name"]
 
 
 if not app:
@@ -54,6 +55,7 @@ if not app:
 work_dir = os.path.join(root_dir, "apps")
 if not os.path.exists(work_dir):
     os.mkdir(work_dir)
+
 work_dir = os.path.join(work_dir, app)
 if not os.path.exists(work_dir):
     os.mkdir(work_dir)
@@ -62,6 +64,12 @@ if not os.path.exists(demo_dir):
     os.mkdir(demo_dir)
 demo_timestamp = int(time.time())
 task_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime("self_explore_%Y-%m-%d_%H-%M-%S")
+
+if test_name:
+    test_log_dir = os.path.join(root_dir, "test_logs")
+    if not os.path.exists(test_log_dir):
+        os.mkdir(test_log_dir)
+
 task_dir = os.path.join(demo_dir, task_name)
 os.mkdir(task_dir)
 docs_dir = os.path.join(work_dir, "auto_docs")
@@ -95,9 +103,6 @@ else:
     print_with_color(f"Task description: {task_desc} | App: {app}", "blue")
 
 
-# Login
-login.login_googlemusic()
-
 round_count = 0
 useless_list = set()
 last_act = "None"
@@ -106,6 +111,18 @@ user_interaction = "None"
 log_item = {}
 image_list = []
 
+if test_name:
+    test_log = {
+        "app": app,
+        "task": task_desc,
+        "rounds": 0,
+        "actions_seq": [],
+        "question_sets": {},
+        "complete": False,
+        "log_path": "",
+        "result_image": ""
+    }
+    
 
 system_prompt = prompts_factory.get_system_prompt(task_desc, app)
     
@@ -166,11 +183,15 @@ while round_count < configs["MAX_ROUNDS"]:
             "prompt": prompt
         }
     }
+       
     
     if act_name == "FINISH":
         task_complete = True
+        if test_name:
+            test_log["complete"] = True
+            test_log["rounds"] = round_count
         break
-    
+     
     
     prompt, image_list = prompts_factory.get_prompts(prompt_style, act_name, last_act, user_interaction, base64_img_before)    
     """ LLM Generation """
@@ -194,6 +215,9 @@ while round_count < configs["MAX_ROUNDS"]:
     ### Process all function calls   
     if act_name == "FINISH":
         task_complete = True
+        if test_name:
+            test_log["complete"] = True
+            test_log["rounds"] = round_count
         break
     if act_name == "tap":
         _, area = res
@@ -238,11 +262,20 @@ while round_count < configs["MAX_ROUNDS"]:
     with open(explore_log_path, "w") as logfile:
         json.dump(log_item, logfile, indent=4)
     time.sleep(configs["REQUEST_INTERVAL"])
+
+    if test_name:
+        if act_name == "clarification" or act_name == "confirmation":
+            test_log["question_sets"][res[-1]] = base64_img_before("\\", "/")
+        test_log["actions_seq"].append(act_name)
+    
+        
     # input("Enter to continue...")
     
 
 if task_complete:
     print_with_color(f"Autonomous exploration completed successfully.", "yellow")
+    if test_name:
+        test_log["complete"] = True
 elif round_count == configs["MAX_ROUNDS"]:
     print_with_color(f"Autonomous exploration finished due to reaching max rounds.",
                      "yellow")
@@ -252,3 +285,11 @@ else:
 with open(explore_log_path, "w") as logfile:
     json.dump(log_item, logfile, indent=4)
 print_with_color(f"Log file saved to {explore_log_path}", "red")
+
+if test_name:
+    test_log["log_path"] = explore_log_path.replace("\\", "/")
+    test_log["result_image"] = base64_img_before.replace("\\", "/")
+    test_log_path = os.path.join(test_log_dir, f"{test_name}.json")
+    with open(test_log_path, "w") as logfile:
+        json.dump(test_log, logfile, indent=4)
+    print_with_color(f"Test log file saved to {test_log_path}", "red")

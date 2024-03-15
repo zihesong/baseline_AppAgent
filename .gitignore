@@ -1,4 +1,6 @@
 api_key.yaml
 apps/
+apks/
 
+test_logs/
 scripts/__pycache__/

@@ -1,0 +1,4 @@
+app,task,prompt_style
+maps,do-nothing,naive
+waze,do-nothing,naive
+mapquest,do-nothing,naive

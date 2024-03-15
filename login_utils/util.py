@@ -3,7 +3,8 @@ import re
 from xml.etree import ElementTree as ET
 from pathlib import Path
 
-import configs
+from . import configs
+
 
 def slice_dict(dict, keys):
     return {k : dict[k] for k in keys}
@@ -88,7 +89,6 @@ def check_activity(acts):
 def install_apk(apk:str):
     print(f"adb install -r {configs.apk_dir}/{apk}.apk")
     os.system(f"adb install -r {configs.apk_dir}/{apk}.apk")
-    
 def uninstall_pkg(pkg:str):
     os.system(f"adb uninstall {pkg}")
 
