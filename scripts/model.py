@@ -110,7 +110,10 @@ def parse_explore_rsp(rsp):
         except:
             reason = "N/A"
         act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
-        last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
+        try:
+            last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
+        except:
+            last_act = "N/A"
         print_with_color("Action:", "yellow")
         print_with_color(act, "magenta")
         print_with_color("Reason:", "yellow")

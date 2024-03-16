@@ -66,7 +66,7 @@ demo_timestamp = int(time.time())
 task_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime("self_explore_%Y-%m-%d_%H-%M-%S")
 
 if test_name:
-    test_log_dir = os.path.join(root_dir, "test_logs")
+    test_log_dir = os.path.join(root_dir, 'test_logs', test_name.split('.')[0])
     if not os.path.exists(test_log_dir):
         os.mkdir(test_log_dir)
 
@@ -128,7 +128,7 @@ system_prompt = prompts_factory.get_system_prompt(task_desc, app)
     
 while round_count < configs["MAX_ROUNDS"]:
     round_count += 1
-    print_with_color(f"Round {round_count}", "red")
+    print_with_color(f"< Round {round_count} >", "red")
     screenshot_before = controller.get_screenshot(f"{round_count}", task_dir)
     xml_path = controller.get_xml(f"{round_count}", task_dir)
     if screenshot_before == "ERROR" or xml_path == "ERROR":
@@ -165,14 +165,14 @@ while round_count < configs["MAX_ROUNDS"]:
     prompt, image_list = prompts_factory.get_prompts(prompt_style, "decision", last_act, user_interaction, base64_img_before)
     print_with_color(f"Images: {', '.join(image_list)}", "blue")
     
-    """ LLM Generation """
-    print_with_color("Getting response from the model...", "yellow")
+    """ First: Q or A """
+    print_with_color("[Step 1] Q/A ->", "red")
     status, rsp = mllm.get_model_response(system_prompt, prompt, image_list)
     assert status, f"Error: {rsp}"
     
     res, log_dict = parse_explore_rsp(rsp)
     act_name = res[0]
-    last_act = res[-1]
+    # last_act = res[-1]
     res = res[:-1]
     log_item[round_count]= {
         "Decision": {
@@ -184,18 +184,41 @@ while round_count < configs["MAX_ROUNDS"]:
         }
     }
        
-    
     if act_name == "FINISH":
         task_complete = True
         if test_name:
             test_log["complete"] = True
             test_log["rounds"] = round_count
         break
-     
     
+    """ Sceond: if Q, what Q?"""
+    if act_name == "QUESTION":
+        prompt, image_list = prompts_factory.get_prompts(prompt_style, act_name, last_act, user_interaction, base64_img_before) 
+        print_with_color("[Step 1.5] Q ->", "red")
+        status, rsp = mllm.get_model_response(system_prompt, prompt, image_list)
+        
+        res, log_dict = parse_explore_rsp(rsp)
+        act_name = res[0]
+        last_act = res[-1]
+        res = res[:-1]
+        log_item[round_count]["Question"] = {
+            "action": act_name, 
+            "response": log_dict, 
+            "last_act": last_act,
+            "image": f"{round_count}_before_labeled.png",
+            "prompt": prompt
+        }
+        
+        print_with_color(f"{act_name} question: {res}", "green")    
+        test_log["actions_seq"].append(act_name)
+        if test_name:
+            test_log["question_sets"][res[-1]] = base64_img_before.replace("\\", "/")
+        act_name = "ACTION"
+
+    
+    """ Third: A """
     prompt, image_list = prompts_factory.get_prompts(prompt_style, act_name, last_act, user_interaction, base64_img_before)    
-    """ LLM Generation """
-    print_with_color("Getting response from the model...", "yellow")
+    print_with_color("[Step 2] A ->", "red")
     status, rsp = mllm.get_model_response(system_prompt, prompt, image_list)
     assert status, f"Error: {rsp}"
         
@@ -212,63 +235,67 @@ while round_count < configs["MAX_ROUNDS"]:
         "prompt": prompt, 
     }
     
-    ### Process all function calls   
-    if act_name == "FINISH":
-        task_complete = True
-        if test_name:
-            test_log["complete"] = True
-            test_log["rounds"] = round_count
-        break
-    if act_name == "tap":
-        _, area = res
-        tl, br = elem_list[area - 1].bbox
-        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-        ret = controller.tap(x, y)
-        if ret == "ERROR":
-            print_with_color("ERROR: tap execution failed", "red")
-            break
-    elif act_name == "text":
-        _, input_str = res
-        ret = controller.text(input_str)
-        if ret == "ERROR":
-            print_with_color("ERROR: text execution failed", "red")
-            break
-    elif act_name == "long_press":
-        _, area = res
-        tl, br = elem_list[area - 1].bbox
-        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-        ret = controller.long_press(x, y)
-        if ret == "ERROR":
-            print_with_color("ERROR: long press execution failed", "red")
-            break
-    elif act_name == "swipe":
-        _, area, swipe_dir, dist = res
-        tl, br = elem_list[area - 1].bbox
-        x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
-        ret = controller.swipe(x, y, swipe_dir, dist)
-        if ret == "ERROR":
-            print_with_color("ERROR: swipe execution failed", "red")
-            break
-    elif act_name == "clarification" or act_name == "confirmation":
-        _, question = res
-        user_response = input()
-        user_interaction = f"{act_name} question: {question}, user responce: {user_response}."
-        print_with_color(f"{user_interaction}", "green")
-        # time.sleep(configs["REQUEST_INTERVAL"])
-    else:
-        print_with_color(f"Invalid prompt style: {prompt_style}", "red")
-        break
-
-    with open(explore_log_path, "w") as logfile:
-        json.dump(log_item, logfile, indent=4)
-    time.sleep(configs["REQUEST_INTERVAL"])
-
-    if test_name:
-        if act_name == "clarification" or act_name == "confirmation":
-            test_log["question_sets"][res[-1]] = base64_img_before("\\", "/")
-        test_log["actions_seq"].append(act_name)
     
-        
+    ### Process all function calls   
+    try:
+        if act_name == "FINISH":
+            task_complete = True
+            if test_name:
+                test_log["complete"] = True
+                test_log["rounds"] = round_count
+            break
+        if act_name == "tap":
+            _, area = res
+            tl, br = elem_list[area - 1].bbox
+            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+            ret = controller.tap(x, y)
+            if ret == "ERROR":
+                print_with_color("ERROR: tap execution failed", "red")
+                break
+        elif act_name == "text":
+            _, input_str = res
+            ret = controller.text(input_str)
+            if ret == "ERROR":
+                print_with_color("ERROR: text execution failed", "red")
+                break
+            ret = controller.enter()
+            if ret == "ERROR":
+                print_with_color("ERROR: enter execution failed", "red")
+                break
+        elif act_name == "long_press":
+            _, area = res
+            tl, br = elem_list[area - 1].bbox
+            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+            ret = controller.long_press(x, y)
+            if ret == "ERROR":
+                print_with_color("ERROR: long press execution failed", "red")
+                break
+        elif act_name == "swipe":
+            _, area, swipe_dir, dist = res
+            tl, br = elem_list[area - 1].bbox
+            x, y = (tl[0] + br[0]) // 2, (tl[1] + br[1]) // 2
+            ret = controller.swipe(x, y, swipe_dir, dist)
+            if ret == "ERROR":
+                print_with_color("ERROR: swipe execution failed", "red")
+                break
+        # elif act_name == "clarification" or act_name == "confirmation":
+        #     _, question = res
+        #     user_response = input()
+        #     user_interaction = f"{act_name} question: {question}, user responce: {user_response}."
+        #     print_with_color(f"{user_interaction}", "green")
+        #     # time.sleep(configs["REQUEST_INTERVAL"])
+        else:
+            print_with_color(f"Invalid prompt style: {prompt_style}", "red")
+            break
+        with open(explore_log_path, "w") as logfile:
+            json.dump(log_item, logfile, indent=4)
+    except Exception as e:
+        test_log["complete"] = "Error"
+        break
+
+    time.sleep(configs["REQUEST_INTERVAL"])
+    test_log["actions_seq"].append(act_name)
+
     # input("Enter to continue...")
     
 
@@ -289,6 +316,7 @@ print_with_color(f"Log file saved to {explore_log_path}", "red")
 if test_name:
     test_log["log_path"] = explore_log_path.replace("\\", "/")
     test_log["result_image"] = base64_img_before.replace("\\", "/")
+    test_log["rounds"] = round_count
     test_log_path = os.path.join(test_log_dir, f"{test_name}.json")
     with open(test_log_path, "w") as logfile:
         json.dump(test_log, logfile, indent=4)

@@ -65,31 +65,36 @@ def login_booking(username, password):
     adb_input("tap 369 461", 2)
     adb_input("tap 376 633", 8)
     # Cancel AI assistant
-    adb_input("tap 361 1120", 3)
-    adb_input("tap 65 116", 2)
+    adb_input("tap 361 1120", 10)
+    adb_input("tap 65 116", 5)
 
 def login_tripadvisor(username, password):
     # adb_pm("grant com.tripadvisor.tripadvisor android.permission.ACCESS_COARSE_LOCATION")
     # adb_pm("grant com.tripadvisor.tripadvisor android.permission.ACCESS_FINE_LOCATION")
     
-    adb_input("tap 397 733", 4)
-    adb_input("tap 376 633", 5)
+    adb_input("tap 668 126", 3)
     adb_input("tap 343 843", 2)
-    adb_input("tap 397 835", 2)
+    adb_input("tap 397 835", 10)
+    
+    # Login
+    adb_input("tap 685 157", 3)
+    adb_input("tap 397 807", 8)
+    adb_input("tap 376 633", 8)
     # Input name
     # adb_input("tap 164 1237", 2)
 
 def login_agoda(username, password):
-    pdb.set_trace()
-    adb_pm("grant com.agoda.mobile.consumer android.permission.ACCESS_COARSE_LOCATION")
-    adb_pm("grant com.agoda.mobile.consumer android.permission.ACCESS_FINE_LOCATION")
+    # adb_pm("grant com.agoda.mobile.consumer android.permission.ACCESS_COARSE_LOCATION")
+    # adb_pm("grant com.agoda.mobile.consumer android.permission.ACCESS_FINE_LOCATION")
+
     
-    adb_input("tap 383 1092", 3)
-    adb_input("tap 376 633", 8)
-    adb_input("tap 364 837", 3)
-    adb_input("tap 190 255", 1)
-    adb_input("tap 376 1120", 4)
-    adb_input("tap 190 255", 1)
+    adb_input("tap 383 1092", 10)
+    adb_input("tap 376 633", 10)
+    adb_input("tap 364 837", 8)
+    adb_input("tap 190 255", 5)
+    adb_input("tap 376 1120", 8)
+    adb_input("tap 190 255", 5)
+    adb_input("tap 68 1117", 3)
 
 
 def login_simplealarmclock(username = 0, password = 0):

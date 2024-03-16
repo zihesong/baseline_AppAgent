@@ -1,11 +1,11 @@
 app,task,prompt_style
-youtubemusic,search-blinding-lights-by-the-weeknd,naive
+youtubemusic,search-blinding-lights-by-the-weekend,naive
 youtubemusic,search-on-the-road-again,naive
 youtubemusic,explore-and-play-the-top-hits,naive
-spotify,search-blinding-lights-by-the-weeknd,naive
+spotify,search-blinding-lights-by-the-weekend,naive
 spotify,search-on-the-road-again,naive
 spotify,explore-and-play-the-top-hits,naive
-pandora,search-blinding-lights-by-the-weeknd,naive
+pandora,search-blinding-lights-by-the-weekend,naive
 pandora,search-on-the-road-again,naive
 pandora,explore-and-play-the-top-hits,naive
 maps,look-for-university-of-texas-at-dallas,naive

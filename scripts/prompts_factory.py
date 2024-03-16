@@ -4,7 +4,7 @@ import prompts_naive, prompts
 import examples
 
 def get_system_prompt(task_desc: str, app:str) -> str:
-    return f"You are an agent that is trained to complete certain tasks on a smartphone. The task you need to complete is to {task_desc} on {app}."
+    return f"You are an agent that is trained to complete certain tasks on a smartphone. The task you need to complete is to {task_desc} on {app}.\n\nYou will be given a screenshot of a smartphone app. The interactive UI elements on the screenshot are labeled with numeric tags starting from 1. Do not treat the numbers on the tags as the page content. They only represents the elements that you can interact with. Only focus on the elements in the screenshot, and do not assume anything that is not shown in the screenshot."
 
 def get_prompts(prompt_style: str, turn: str, last_act: str, user_interaction: str, image: List[str]) -> Union[str, List[str]]:
     assert prompt_style in ["normal", "naive"], f"Unknown prompt style: {prompt_style}"
