@@ -5,15 +5,14 @@ import json
 import datetime
 import time
 import pdb
+import shutil
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 
 
 def combine_test_logs(directory):
-    # List to hold combined data
     combined_data = []
-    # json_files_to_delete = []
 
     for filename in os.listdir(directory):
         if filename.endswith('.json'):
@@ -21,16 +20,18 @@ def combine_test_logs(directory):
             with open(filepath, 'r') as json_file:
                 data = json.load(json_file)
                 combined_data.append(data)
-                # json_files_to_delete.append(filepath)
     df = pd.DataFrame(combined_data)
 
     output_csv_path = directory + '/test_logs.csv'
     df.to_csv(output_csv_path, index=False)
-
-    # if os.path.exists(output_csv_path) and not df.empty:
-    #     for filepath in json_files_to_delete:
-    #         os.remove(filepath)
-    #         print(f"Deleted: {filepath}")    
+    
+    # Copy log folder
+    pdb.set_trace()
+    for i, row in df.iterrows():
+        source_dir = os.path.dirname(row['log_path'])
+        dest_dir = os.path.join(directory, row['app'].replace(' ', '-'), row['task'].replace(' ', '-'))
+        shutil.copytree(source_dir, dest_dir)
+  
     
    
 def main():
@@ -45,6 +46,7 @@ def main():
         command = f"python learn.py --app {test['app']} --task {test['task']} --prompt_style {test['prompt_style']} --test_name {test_name}.{i}"
         print(f"Running test {i} => {command}")
         os.system(command)
+    test_name = "test_03-15_22-59-29"
     print("Gather Test Logs... ")
     combine_test_logs("./test_logs/" + test_name.split('.')[0])
     
