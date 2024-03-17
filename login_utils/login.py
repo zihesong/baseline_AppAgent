@@ -96,6 +96,10 @@ def login_agoda(username, password):
     adb_input("tap 190 255", 5)
     adb_input("tap 68 1117", 3)
 
+def login_trivago(username, password):
+    adb_input("tap 366 1107", 3)    
+    adb_input("tap 366 1107", 3)
+
 
 def login_simplealarmclock(username = 0, password = 0):
     adb_input("tap 140 525", 2) 
