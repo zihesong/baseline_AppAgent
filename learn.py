@@ -12,6 +12,7 @@ parser.add_argument("--task")
 parser.add_argument("--root_dir", default="./")
 parser.add_argument("--prompt_style", default="normal")
 parser.add_argument("--test_name", default="")
+parser.add_argument("--test_setting", default="naive")
 args = vars(parser.parse_args())
 
 app = args["app"]
@@ -19,6 +20,7 @@ task = args["task"]
 root_dir = args["root_dir"]
 prompt_style = args["prompt_style"]
 test_name = args["test_name"]
+test_setting = args["test_setting"]
 
 
 # print_with_color("Welcome to the exploration phase of AppAgent!\nThe exploration phase aims at generating "
@@ -43,8 +45,22 @@ if not app:
     app = app.replace(" ", "")
 
 if user_input == "1":
-    print_with_color(f"Prompt Style {prompt_style}", "red")
-    os.system(f"python scripts/self_explorer.py --app {app} --task {task} --root_dir {root_dir} --prompt {prompt_style} --test_name {test_name}")
+    if test_setting == "record":
+        os.system((f"python scripts/self_explorer_recorder.py"
+            f" --app {app}" 
+            f" --task {task}" 
+            f" --root_dir {root_dir}"
+            f" --test_name {test_name}"
+            f" --test_setting {test_setting}"))
+    else:
+        print_with_color(f"Prompt Style {prompt_style}", "red")
+        os.system((f"python scripts/self_explorer.py"
+            f" --app {app}" 
+            f" --task {task}"
+            f" --root_dir {root_dir}"
+            f" --prompt {prompt_style}"
+            f" --test_name {test_name}"
+            f" --test_setting {test_setting}"))
 else:
     demo_timestamp = int(time.time())
     demo_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime(f"demo_{app}_%Y-%m-%d_%H-%M-%S")

@@ -23,6 +23,7 @@ parser.add_argument("--task", default="")
 parser.add_argument("--root_dir", default="./")
 parser.add_argument("--prompt_style", default="sequential")
 parser.add_argument("--test_name", default="")
+parser.add_argument("--test_setting", default="naive")
 args = vars(parser.parse_args())
 
 configs = load_config()
@@ -45,6 +46,7 @@ task = args["task"].replace("-", " ")
 root_dir = args["root_dir"]
 prompt_style = args["prompt_style"]
 test_name = args["test_name"]
+test_setting = args["test_setting"]
 
 
 if not app:
@@ -66,7 +68,7 @@ demo_timestamp = int(time.time())
 task_name = datetime.datetime.fromtimestamp(demo_timestamp).strftime("self_explore_%Y-%m-%d_%H-%M-%S")
 
 if test_name:
-    test_log_dir = os.path.join(root_dir, 'test_logs', test_name.split('.')[0])
+    test_log_dir = os.path.join(root_dir, 'test_logs', f'test_setting_{test_setting}', test_name.split('.')[0])
     if not os.path.exists(test_log_dir):
         os.mkdir(test_log_dir)
 
@@ -129,39 +131,41 @@ system_prompt = prompts_factory.get_system_prompt(task_desc, app)
 while round_count < configs["MAX_ROUNDS"]:
     round_count += 1
     print_with_color(f"< Round {round_count} >", "red")
-    screenshot_before = controller.get_screenshot(f"{round_count}", task_dir)
+    screenshot_before = controller.get_screenshot(f"{round_count}", task_dir, resized_percent=50)
     xml_path = controller.get_xml(f"{round_count}", task_dir)
     if screenshot_before == "ERROR" or xml_path == "ERROR":
         break
-    clickable_list = []
-    focusable_list = []
-    traverse_tree(xml_path, clickable_list, "clickable", True)
-    traverse_tree(xml_path, focusable_list, "focusable", True)
-    elem_list = []
-    for elem in clickable_list:
-        if elem.uid in useless_list:
-            continue
-        elem_list.append(elem)
-    for elem in focusable_list:
-        if elem.uid in useless_list:
-            continue
-        bbox = elem.bbox
-        center = (bbox[0][0] + bbox[1][0]) // 2, (bbox[0][1] + bbox[1][1]) // 2
-        close = False
-        for e in clickable_list:
-            bbox = e.bbox
-            center_ = (bbox[0][0] + bbox[1][0]) // 2, (bbox[0][1] + bbox[1][1]) // 2
-            dist = (abs(center[0] - center_[0]) ** 2 + abs(center[1] - center_[1]) ** 2) ** 0.5
-            if dist <= configs["MIN_DIST"]:
-                close = True
-                break
-        if not close:
+    if test_setting != "naive":
+        clickable_list = []
+        focusable_list = []
+        traverse_tree(xml_path, clickable_list, "clickable", True)
+        traverse_tree(xml_path, focusable_list, "focusable", True)
+        elem_list = []
+        for elem in clickable_list:
+            if elem.uid in useless_list:
+                continue
             elem_list.append(elem)
-    draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_labeled.png"), elem_list,
-                    dark_mode=configs["DARK_MODE"])
-
-
-    base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
+        for elem in focusable_list:
+            if elem.uid in useless_list:
+                continue
+            bbox = elem.bbox
+            center = (bbox[0][0] + bbox[1][0]) // 2, (bbox[0][1] + bbox[1][1]) // 2
+            close = False
+            for e in clickable_list:
+                bbox = e.bbox
+                center_ = (bbox[0][0] + bbox[1][0]) // 2, (bbox[0][1] + bbox[1][1]) // 2
+                dist = (abs(center[0] - center_[0]) ** 2 + abs(center[1] - center_[1]) ** 2) ** 0.5
+                if dist <= configs["MIN_DIST"]:
+                    close = True
+                    break
+            if not close:
+                elem_list.append(elem)
+        draw_bbox_multi(screenshot_before, os.path.join(task_dir, f"{round_count}_labeled.png"), elem_list,
+                        dark_mode=configs["DARK_MODE"])
+        base64_img_before = os.path.join(task_dir, f"{round_count}_labeled.png")
+    else:
+        base64_img_before = os.path.join(task_dir, f"{round_count}.png")
+        
     prompt, image_list = prompts_factory.get_prompts(prompt_style, "decision", last_act, user_interaction, base64_img_before)
     print_with_color(f"Images: {', '.join(image_list)}", "blue")
     

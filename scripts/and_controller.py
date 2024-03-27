@@ -101,19 +101,33 @@ class AndroidController:
             return map(int, result.split(": ")[1].split("x"))
         return 0, 0
 
-    def get_screenshot(self, prefix, save_dir):
+    def get_screenshot(self, prefix, save_dir, resized_percent=50):
         cap_command = f"adb -s {self.device} shell screencap -p " \
                       f"{os.path.join(self.screenshot_dir, prefix + '.png').replace(self.backslash, '/')}"
         pull_command = f"adb -s {self.device} pull " \
                        f"{os.path.join(self.screenshot_dir, prefix + '.png').replace(self.backslash, '/')} " \
                        f"{os.path.join(save_dir, prefix + '.png')}"
+        # Reduce resolution
+        resize_command = f"magick " \
+                          f"{os.path.join(save_dir, prefix + '.png').replace(self.backslash, '/')} " \
+                          f"-resize {resized_percent}% " \
+                          f"{os.path.join(save_dir, prefix + '_resized.png').replace(self.backslash, '/')}"
         result = execute_adb(cap_command)
-        if result != "ERROR":
-            result = execute_adb(pull_command)
-            if result != "ERROR":
-                return os.path.join(save_dir, prefix + ".png")
+        if result == "ERROR":
             return result
-        return result
+
+        result = execute_adb(pull_command)
+        if result == "ERROR":
+            return result
+
+        if resized_percent < 100:
+            result = os.system(resize_command)
+            if result != "ERROR":
+                return result
+            return os.path.join(save_dir, prefix + "_resized.png")
+        else:
+            return os.path.join(save_dir, prefix + ".png")
+
 
     def get_xml(self, prefix, save_dir):
         dump_command = f"adb -s {self.device} shell uiautomator dump " \
