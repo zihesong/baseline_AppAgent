@@ -109,17 +109,22 @@ def parse_explore_rsp(rsp):
             reason = re.findall(r"Reason: (.*?)$", rsp, re.MULTILINE)[0]
         except:
             reason = "N/A"
-        act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
+        try:
+            act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
+        except:
+            act = "N/A"
         try:
             last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
         except:
             last_act = "N/A"
-        print_with_color("Action:", "yellow")
-        print_with_color(act, "magenta")
-        print_with_color("Reason:", "yellow")
-        print_with_color(reason, "magenta")
-        print_with_color("Summary:", "yellow")
-        print_with_color(last_act, "magenta")
+        # print_with_color("Action:", "yellow")
+        # print_with_color(act, "magenta")
+        # print_with_color("Reason:", "yellow")
+        # print_with_color(reason, "magenta")
+        # print_with_color("Summary:", "yellow")
+        # print_with_color(last_act, "magenta")
+   
+
         log_dict = {
             "Action": act,
             "Reason": reason,
@@ -130,6 +135,8 @@ def parse_explore_rsp(rsp):
         act_name = act.split("(")[0]
         if act_name == "QUESTION" or act_name == "ACTION":
             return [act_name, last_act], log_dict
+
+        
         if act_name == "tap":
             area = int(re.findall(r"tap\((.*?)\)", act)[0])
             return [act_name, area, last_act], log_dict
@@ -162,7 +169,7 @@ def parse_explore_rsp(rsp):
     except Exception as e:
         print_with_color(f"ERROR: an exception occurs while parsing the model response: {e}", "red")
         print_with_color(rsp, "red")
-        return ["ERROR"], log_dict
+        return ["ERROR"], {}
 
 def parse_grid_rsp(rsp):
     try:

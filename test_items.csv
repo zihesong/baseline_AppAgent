@@ -1,2 +1,2 @@
-app,task,prompt_style
-trivago,do-nothing,naive
+app,task
+booking,do-nothing

@@ -55,6 +55,7 @@ def main():
     for i, test in test_items.iterrows():
         print(">> Login...")
         setup.setup_app(test['app']) 
+        input()
         command = f"python learn.py --app {test['app']} --task {test['task']} --prompt_style {test['prompt_style']} --test_name {test_name}.{i} --test_setting {test_setting}"
         print(f"Running test {i} => {command}")
         print(">> Start Testing...")

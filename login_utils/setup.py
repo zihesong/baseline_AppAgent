@@ -17,6 +17,10 @@ def setup_app(apk):
     time.sleep(10)
     return login.login_app(apk)
 
+def simple_setup_app(apk):
+    ensure_reinstalled(apk)
+    start_app(apk)
+
 def setup_googleaccount():
     return login.login_google(username="test.utd.test@gmail.com", password="Wojiuyaobaipiao")
 
