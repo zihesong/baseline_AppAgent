@@ -50,6 +50,8 @@ test_content = {
 system_prompt = prompts_factory.get_system_prompt(task_desc, app)
 
 """1: Q or A"""
+decision_template = re.sub(r"<task_description>", task_desc, decision_template)
+decision_template = re.sub(r"<app>", app, decision_template)
 status, rsp = mllm.get_model_response(system_prompt, decision_template, [image_path])
 assert status, f"Error: {rsp}"
 
@@ -62,7 +64,9 @@ print_with_color(f"decision: {decision}", "green")
 test_content["decision"] = decision
 
 if decision.lower() == "true":
-    status, rsp = mllm.get_model_response(question_template, question_template, [image_path])
+    question_template = re.sub(r"<task_description>", task_desc, question_template)
+    question_template = re.sub(r"<app>", app, question_template)
+    status, rsp = mllm.get_model_response(system_prompt, question_template, [image_path])
     assert status, f"Error: {rsp}"
     try:
         question = re.findall(r"question: (.*?)$", rsp, re.MULTILINE)[0]
