@@ -7,7 +7,7 @@ import requests
 import dashscope
 
 from utils import print_with_color, encode_image
-
+import pdb
 
 class BaseModel:
     def __init__(self):
@@ -96,6 +96,7 @@ class QwenModel(BaseModel):
                 "content": content
             }
         ]
+
         response = dashscope.MultiModalConversation.call(model=self.model, messages=messages)
         if response.status_code == HTTPStatus.OK:
             return True, response.output.choices[0].message.content[0]["text"]

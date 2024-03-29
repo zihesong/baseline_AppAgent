@@ -6,8 +6,8 @@ import json
 import pdb
 import re
 
-from config import load_config
-from model import OpenAIModel, parse_explore_rsp
+from config_yaml import load_config
+from model import OpenAIModel
 from utils import print_with_color
 from prompts_offline import decision_template, question_template
 import prompts_factory
@@ -24,6 +24,8 @@ elif configs["MODEL"] == "Qwen":
 else:
     print_with_color(f"ERROR: Unsupported model type {configs['MODEL']}!", "red")
     sys.exit()
+    
+
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument("--app")
@@ -48,6 +50,7 @@ test_content = {
 }
 
 system_prompt = prompts_factory.get_system_prompt(task_desc, app)
+
 
 """1: Q or A"""
 decision_template = re.sub(r"<task_description>", task_desc, decision_template)
@@ -91,5 +94,6 @@ else:
         file.seek(0)
         json.dump(data, file, indent=4)
         file.truncate()
+
 
 print_with_color(f"[{task_desc}, {test_count}]: Data saved/updated in {log_name}", "blue")
