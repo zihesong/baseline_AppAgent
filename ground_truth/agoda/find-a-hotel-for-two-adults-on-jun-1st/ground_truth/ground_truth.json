@@ -1,0 +1,74 @@
+{
+    "1": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "agoda",
+        "task": "find-a-hotel-for-two-adults-on-jun-1st",
+        "image_path": "./ground_truth/agoda/find-a-hotel-for-two-adults-on-jun-1st/12.png",
+        "ground_truth": ""
+    }
+}

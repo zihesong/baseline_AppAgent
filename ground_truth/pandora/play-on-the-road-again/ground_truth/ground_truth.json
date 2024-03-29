@@ -1,0 +1,32 @@
+{
+    "1": {
+        "app": "pandora",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/pandora/play-on-the-road-again/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "pandora",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/pandora/play-on-the-road-again/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "pandora",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/pandora/play-on-the-road-again/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "pandora",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/pandora/play-on-the-road-again/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "pandora",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/pandora/play-on-the-road-again/5.png",
+        "ground_truth": ""
+    }
+}

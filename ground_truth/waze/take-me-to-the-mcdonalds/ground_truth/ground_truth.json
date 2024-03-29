@@ -1,0 +1,38 @@
+{
+    "1": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "waze",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/waze/take-me-to-the-mcdonalds/6.png",
+        "ground_truth": ""
+    }
+}

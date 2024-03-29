@@ -1,0 +1,38 @@
+{
+    "1": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "youtubemusic",
+        "task": "add-blinding-lights-to-my-liked",
+        "image_path": "./ground_truth/youtubemusic/add-blinding-lights-to-my-liked/6.png",
+        "ground_truth": ""
+    }
+}

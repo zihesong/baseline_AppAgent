@@ -1,0 +1,26 @@
+{
+    "1": {
+        "app": "pandora",
+        "task": "delete-a-song-from-my-collection",
+        "image_path": "./ground_truth/pandora/delete-a-song-from-my-collection/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "pandora",
+        "task": "delete-a-song-from-my-collection",
+        "image_path": "./ground_truth/pandora/delete-a-song-from-my-collection/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "pandora",
+        "task": "delete-a-song-from-my-collection",
+        "image_path": "./ground_truth/pandora/delete-a-song-from-my-collection/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "pandora",
+        "task": "delete-a-song-from-my-collection",
+        "image_path": "./ground_truth/pandora/delete-a-song-from-my-collection/4.png",
+        "ground_truth": ""
+    }
+}

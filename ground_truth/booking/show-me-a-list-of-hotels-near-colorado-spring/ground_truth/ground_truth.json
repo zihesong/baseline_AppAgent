@@ -1,0 +1,80 @@
+{
+    "1": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/12.png",
+        "ground_truth": ""
+    },
+    "13": {
+        "app": "booking",
+        "task": "show-me-a-list-of-hotels-near-colorado-spring",
+        "image_path": "./ground_truth/booking/show-me-a-list-of-hotels-near-colorado-spring/13.png",
+        "ground_truth": ""
+    }
+}

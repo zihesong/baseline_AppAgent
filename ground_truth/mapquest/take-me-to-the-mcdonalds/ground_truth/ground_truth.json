@@ -1,0 +1,50 @@
+{
+    "1": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "mapquest",
+        "task": "take-me-to-the-mcdonalds",
+        "image_path": "./ground_truth/mapquest/take-me-to-the-mcdonalds/8.png",
+        "ground_truth": ""
+    }
+}

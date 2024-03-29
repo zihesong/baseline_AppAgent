@@ -1,0 +1,74 @@
+{
+    "1": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "booking",
+        "task": "look-for-a-round-trip-flight-to-chicago-for-one-adult",
+        "image_path": "./ground_truth/booking/look-for-a-round-trip-flight-to-chicago-for-one-adult/12.png",
+        "ground_truth": ""
+    }
+}

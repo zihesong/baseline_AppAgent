@@ -1,0 +1,98 @@
+{
+    "1": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/12.png",
+        "ground_truth": ""
+    },
+    "13": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/13.png",
+        "ground_truth": ""
+    },
+    "14": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/14.png",
+        "ground_truth": ""
+    },
+    "15": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/15.png",
+        "ground_truth": ""
+    },
+    "16": {
+        "app": "booking",
+        "task": "look-for-an-one-way-trip-flight-from-DTW-to-CHI",
+        "image_path": "./ground_truth/booking/look-for-an-one-way-trip-flight-from-DTW-to-CHI/16.png",
+        "ground_truth": ""
+    }
+}

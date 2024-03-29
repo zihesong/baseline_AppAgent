@@ -1,0 +1,104 @@
+{
+    "1": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/12.png",
+        "ground_truth": ""
+    },
+    "13": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/13.png",
+        "ground_truth": ""
+    },
+    "14": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/14.png",
+        "ground_truth": ""
+    },
+    "15": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/15.png",
+        "ground_truth": ""
+    },
+    "16": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/16.png",
+        "ground_truth": ""
+    },
+    "17": {
+        "app": "agoda",
+        "task": "look-for-a-flight-to-dallas-tx-on-may-4th",
+        "image_path": "./ground_truth/agoda/look-for-a-flight-to-dallas-tx-on-may-4th/17.png",
+        "ground_truth": ""
+    }
+}

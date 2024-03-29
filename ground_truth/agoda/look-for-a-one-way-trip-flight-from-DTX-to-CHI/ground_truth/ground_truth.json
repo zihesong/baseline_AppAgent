@@ -1,0 +1,86 @@
+{
+    "1": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/12.png",
+        "ground_truth": ""
+    },
+    "13": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/13.png",
+        "ground_truth": ""
+    },
+    "14": {
+        "app": "agoda",
+        "task": "look-for-a-one-way-trip-flight-from-DTX-to-CHI",
+        "image_path": "./ground_truth/agoda/look-for-a-one-way-trip-flight-from-DTX-to-CHI/14.png",
+        "ground_truth": ""
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "1": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "trivago",
+        "task": "find-a-hotel-for-one-adult-at-new-york",
+        "image_path": "./ground_truth/trivago/find-a-hotel-for-one-adult-at-new-york/10.png",
+        "ground_truth": ""
+    }
+}

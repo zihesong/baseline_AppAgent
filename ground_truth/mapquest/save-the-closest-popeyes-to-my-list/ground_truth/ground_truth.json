@@ -1,0 +1,74 @@
+{
+    "1": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "mapquest",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/mapquest/save-the-closest-popeyes-to-my-list/12.png",
+        "ground_truth": ""
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "1": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "waze",
+        "task": "save-the-closest-popeyes-to-my-list",
+        "image_path": "./ground_truth/waze/save-the-closest-popeyes-to-my-list/10.png",
+        "ground_truth": ""
+    }
+}

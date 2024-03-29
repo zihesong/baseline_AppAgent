@@ -1,0 +1,38 @@
+{
+    "1": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "waze",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/waze/navigate-to-a-restaurant-near-me/6.png",
+        "ground_truth": ""
+    }
+}

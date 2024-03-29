@@ -1,0 +1,50 @@
+{
+    "1": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "maps",
+        "task": "navigate-to-a-restaurant-near-me",
+        "image_path": "./ground_truth/maps/navigate-to-a-restaurant-near-me/8.png",
+        "ground_truth": ""
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "1": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/6.png",
+        "ground_truth": ""
+    },
+    "7": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/7.png",
+        "ground_truth": ""
+    },
+    "8": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/8.png",
+        "ground_truth": ""
+    },
+    "9": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/9.png",
+        "ground_truth": ""
+    },
+    "10": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/10.png",
+        "ground_truth": ""
+    },
+    "11": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/11.png",
+        "ground_truth": ""
+    },
+    "12": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/12.png",
+        "ground_truth": ""
+    },
+    "13": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/13.png",
+        "ground_truth": ""
+    },
+    "14": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/14.png",
+        "ground_truth": ""
+    },
+    "15": {
+        "app": "trivago",
+        "task": "show-me-a-list-of-hotels-near-colorado-springs",
+        "image_path": "./ground_truth/trivago/show-me-a-list-of-hotels-near-colorado-springs/15.png",
+        "ground_truth": ""
+    }
+}

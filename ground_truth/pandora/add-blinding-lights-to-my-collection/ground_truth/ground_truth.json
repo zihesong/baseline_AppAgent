@@ -1,0 +1,38 @@
+{
+    "1": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/4.png",
+        "ground_truth": ""
+    },
+    "5": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/5.png",
+        "ground_truth": ""
+    },
+    "6": {
+        "app": "pandora",
+        "task": "add-blinding-lights-to-my-collection",
+        "image_path": "./ground_truth/pandora/add-blinding-lights-to-my-collection/6.png",
+        "ground_truth": ""
+    }
+}

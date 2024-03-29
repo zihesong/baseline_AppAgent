@@ -1,0 +1,26 @@
+{
+    "1": {
+        "app": "youtubemusic",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/youtubemusic/play-on-the-road-again/1.png",
+        "ground_truth": ""
+    },
+    "2": {
+        "app": "youtubemusic",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/youtubemusic/play-on-the-road-again/2.png",
+        "ground_truth": ""
+    },
+    "3": {
+        "app": "youtubemusic",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/youtubemusic/play-on-the-road-again/3.png",
+        "ground_truth": ""
+    },
+    "4": {
+        "app": "youtubemusic",
+        "task": "play-on-the-road-again",
+        "image_path": "./ground_truth/youtubemusic/play-on-the-road-again/4.png",
+        "ground_truth": ""
+    }
+}
