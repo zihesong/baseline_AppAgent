@@ -26,8 +26,9 @@ class OpenAIModel(BaseModel):
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
+        
 
-    def get_model_response(self, prompt: str, images: List[str]) -> (bool, str):
+    def get_model_response(self, system_prompt:str, prompt: str, images: List[str]) -> (bool, str):
         content = [
             {
                 "type": "text",
@@ -49,6 +50,10 @@ class OpenAIModel(BaseModel):
         payload = {
             "model": self.model,
             "messages": [
+                {
+                    "role": "system",
+                    "content": system_prompt
+                },
                 {
                     "role": "user",
                     "content": content
@@ -100,47 +105,64 @@ class QwenModel(BaseModel):
 
 def parse_explore_rsp(rsp):
     try:
-        observation = re.findall(r"Observation: (.*?)$", rsp, re.MULTILINE)[0]
-        think = re.findall(r"Thought: (.*?)$", rsp, re.MULTILINE)[0]
+        try:
+            reason = re.findall(r"Reason: (.*?)$", rsp, re.MULTILINE)[0]
+        except:
+            reason = "N/A"
         act = re.findall(r"Action: (.*?)$", rsp, re.MULTILINE)[0]
-        last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
-        print_with_color("Observation:", "yellow")
-        print_with_color(observation, "magenta")
-        print_with_color("Thought:", "yellow")
-        print_with_color(think, "magenta")
+        try:
+            last_act = re.findall(r"Summary: (.*?)$", rsp, re.MULTILINE)[0]
+        except:
+            last_act = "N/A"
         print_with_color("Action:", "yellow")
         print_with_color(act, "magenta")
+        print_with_color("Reason:", "yellow")
+        print_with_color(reason, "magenta")
         print_with_color("Summary:", "yellow")
         print_with_color(last_act, "magenta")
+        log_dict = {
+            "Action": act,
+            "Reason": reason,
+            "Summary": last_act
+        }
         if "FINISH" in act:
-            return ["FINISH"]
+            return ["FINISH"], log_dict
         act_name = act.split("(")[0]
+        if act_name == "QUESTION" or act_name == "ACTION":
+            return [act_name, last_act], log_dict
         if act_name == "tap":
             area = int(re.findall(r"tap\((.*?)\)", act)[0])
-            return [act_name, area, last_act]
+            return [act_name, area, last_act], log_dict
         elif act_name == "text":
             input_str = re.findall(r"text\((.*?)\)", act)[0][1:-1]
-            return [act_name, input_str, last_act]
+            return [act_name, input_str, last_act], log_dict
         elif act_name == "long_press":
             area = int(re.findall(r"long_press\((.*?)\)", act)[0])
-            return [act_name, area, last_act]
+            return [act_name, area, last_act], log_dict
         elif act_name == "swipe":
             params = re.findall(r"swipe\((.*?)\)", act)[0]
             area, swipe_dir, dist = params.split(",")
             area = int(area)
             swipe_dir = swipe_dir.strip()[1:-1]
             dist = dist.strip()[1:-1]
-            return [act_name, area, swipe_dir, dist, last_act]
+            return [act_name, area, swipe_dir, dist, last_act], log_dict
         elif act_name == "grid":
-            return [act_name]
+            return [act_name], log_dict
+        elif act_name == "clarification":
+            question = re.findall(r"clarification\((.*?)\)", act)[0][1:-1]
+            print_with_color(f"CLARIFICATION: {question}", "yellow")
+            return [act_name, question, last_act], log_dict
+        elif act_name == "confirmation":
+            question = re.findall(r"confirmation\((.*?)\)", act)[0][1:-1]
+            print_with_color(f"CONFIRMATION: {question}", "yellow")
+            return [act_name, question, last_act], log_dict
         else:
             print_with_color(f"ERROR: Undefined act {act_name}!", "red")
-            return ["ERROR"]
+            return ["ERROR"], log_dict
     except Exception as e:
         print_with_color(f"ERROR: an exception occurs while parsing the model response: {e}", "red")
         print_with_color(rsp, "red")
-        return ["ERROR"]
-
+        return ["ERROR"], log_dict
 
 def parse_grid_rsp(rsp):
     try:

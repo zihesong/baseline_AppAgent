@@ -5,7 +5,7 @@ import pyshine as ps
 from colorama import Fore, Style
 
 
-def print_with_color(text: str, color=""):
+def print_with_color(text: str, color="", new_line=True):
     if color == "red":
         print(Fore.RED + text)
     elif color == "green":
@@ -24,7 +24,10 @@ def print_with_color(text: str, color=""):
         print(Fore.BLACK + text)
     else:
         print(text)
-    print(Style.RESET_ALL)
+    if new_line:
+        print(Style.RESET_ALL)
+    else:
+        print(Style.RESET_ALL, end="")
 
 
 def draw_bbox_multi(img_path, output_path, elem_list, record_mode=False, dark_mode=False):
